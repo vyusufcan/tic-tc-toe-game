@@ -30,7 +30,10 @@ class Player:
     
     def get_human_move(self):
         while True:
-            user_input = int(input("Please enter your move (1-9): "))
+            try:
+                user_input = int(input("Please enter your move (1-9): "))
+            except ValueError:
+                print("Please enter only an integer value")
             move = Move(user_input)
             if move.is_valid():
                 break

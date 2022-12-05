@@ -1,3 +1,4 @@
+
 class Board:
 
     EMPTY_CELL = 0
@@ -39,8 +40,8 @@ class Board:
     def check_is_game_over(self, player, last_move):
         return ((self.check_row(player,last_move))
                  or (self.check_column(player,last_move))
-                 or (self.check_diaginal(player, last_move))
-                 or (self.check_antidiagonal(player,last_move)))
+                 or (self.check_diagonal(player))
+                 or (self.check_antidiagonal(player)))
     
     def check_row(self, player, last_move):
         row_index = last_move.get_row()
@@ -76,3 +77,16 @@ class Board:
         
         return markers_count == 3
     
+    def check_is_tie(self):
+        empty_counter = 0
+
+        for row in self.game_board:
+            empty_counter += row.count(Board.EMPTY_CELL)
+        
+        return empty_counter == 0
+    
+    def reset_board(self):
+        self.game_board = [[0,0,0], 
+                           [0,0,0], 
+                           [0,0,0]]
+
